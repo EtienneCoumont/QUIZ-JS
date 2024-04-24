@@ -33,8 +33,7 @@ function countdown() {
     }
 }
 function gotofinalpage() {
-    window.location.href = 'feedback.html';
-    sessionStorage.removeItem('name');
+    location.reload();
 }
 function stoptime() {
     clearInterval(timer);
@@ -76,14 +75,16 @@ for (let i = 0; i < questions.length; i++) {
         radio.setAttribute("type", "radio");
         radio.setAttribute("name", "question" + i);
         radio.setAttribute("value", questions[i].options[op]);
-        radio.setAttribute("id", "option" + op);
-        var span = document.createElement("SPAN");
+        radio.setAttribute("id", "q" + i + "_option" + op);
+        var div = document.createElement("DIV");
+        div.setAttribute("class", "radio");
+        var span = document.createElement("LABEL");
+        span.setAttribute("for", "q" + i + "_option" + op);
         var radiodata = document.createTextNode(questions[i].options[op]);
         span.appendChild(radiodata);
-        var breakline = document.createElement("BR");
-        box.appendChild(radio);
-        box.appendChild(span);
-        box.appendChild(breakline);
+        div.appendChild(radio);
+        div.appendChild(span);
+        box.appendChild(div);
 
     }
     var hr = document.createElement('HR');
