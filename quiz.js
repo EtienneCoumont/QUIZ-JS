@@ -1,8 +1,8 @@
-var name = sessionStorage.getItem('name');
+var name = sessionStorage.getItem('name') || '';
 document.getElementById('username').innerHTML = name;
 document.getElementById('end').style.display = 'none';
 if (name === 'null') {
-    window.location.href = 'feedback.html';
+    // window.location.href = 'feedback.html';
 }
 var timer = setInterval(countdown, 1000);
 
@@ -43,69 +43,24 @@ function stoptime() {
 }
 var questions = [
     {
-        question: "What is the capital of china?",
-        options: ["beijing", "shishang", "xiiping", "None"],
-        ans: "beijing"
+        question: "La biodiversité en Suisse se porte mieux aujourd'hui qu'il y a quelques décennies.",
+        options: ["0", "1", "2", "3", "4", "5"],
+        ans: "0"
     },
     {
-        question: "What is the value of 2+2",
-        options: ["2", "34", "4", "0"],
-        ans: "4"
+        question: "Comparée au reste de l'Europe, la Suisse compte un taux d'aires protégées élevé.",
+        options: ["0", "1", "2", "3", "4", "5"],
+        ans: "5"
     },
     {
-        question: "Which one of the followiing is an IDE?",
-        options: ["VSCODE", "Lenovo", "Dell", "LG"],
-        ans: "VSCODE"
+        question: "La Suisse compte le plus faible taux d'espèces menacées en Europe.",
+        options: ["0", "1", "2", "3", "4", "5"],
+        ans: "0"
     },
     {
-        question: "Not a string function?",
-        options: ["concat()", "toString()", "split()", "round()"],
-        ans: "round()"
-    },
-    {
-        question: "Who is the strongest?",
-        options: [
-            "Superman",
-            "The Hulk",
-            "WonderWoman",
-            "Batman"
-        ],
-        ans: "Superman"
-    },
-    {
-        question: "What is the best seraching engine?",
-        options: [
-            "Google",
-            "Bing",
-            "Mozilla",
-            "IE"
-        ],
-        ans: "Google"
-    },
-    {
-        question: "Where is Waldo really?",
-        options: [
-            "Antarctica",
-            "Exploring the Pacific Ocean",
-            "Sitting in a tree",
-            "Minding his own business, so stop asking"
-        ],
-        ans: "d"
-    },
-    {
-        question: "Which of the following is database?",
-        options: ["sql", "java", "c#", "None"],
-        ans: "sql"
-    },
-    {
-        question: "What among the following is attribute to h1 tag in HTMl?",
-        options: ["style", "id", "value", "All The Above"],
-        ans: "All The Above"
-    },
-    {
-        question: "Which one of the following is highest grossing film ?",
-        options: ["aquman", "Justice League", "Joker", "Avengers-Endgame"],
-        ans: "Avengers-Endgame"
+        question: "Je suis méfiant envers les alertes d’urgences émises par les biologistes.",
+        options: ["0", "1", "2", "3", "4", "5"],
+        ans: "5"
     }
 ];
 var box = document.getElementById("qbox");
@@ -116,7 +71,7 @@ for (let i = 0; i < questions.length; i++) {
     head.setAttribute("id", "question");
     head.appendChild(data);
     box.appendChild(head);
-    for (let op = 0; op < 4; op++) {
+    for (let op = 0; op < questions[i].options.length; op++) {
         var radio = document.createElement('INPUT');
         radio.setAttribute("type", "radio");
         radio.setAttribute("name", "question" + i);
@@ -176,8 +131,7 @@ function submittest() {
             text: "Complete Report Analysis"
         },
         data: [{
-            type: "pie",
-            startAngle: 240,
+            type: "area",
             yValueFormatString: "0",
             indexLabel: "{label} {y}",
             dataPoints: [
